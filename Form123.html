@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: lightblue;
+    text-align: center;
+    padding: 20px;
+}
+
+form {
+    width: 300px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h1 {
+    color: blue;
+}
+
+#submit {
+    background-color: blue;
+    color: white;
+    width: 100%;
+    border: 2px solid #FF00FF; /* Set border color to pink */
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Add transition for color change */
+}
+
+#submit:hover {
+    background-color: #FF00FF; /* Change background color to pink on hover */
+    color: #00FFFF; /* Change text color to cyan on hover */
+}
+
+#reset {
+    background-color: red;
+    color: white;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Arrange elements above and below the form */
+form > div {
+    margin-bottom: 10px;
+}
+
+</style>
+</head>
+<body>
+<h1>Customer Survey Form</h1>
+
+<div>
+    <h2>Personal Information</h2>
+    <form id="personalForm">
+        <div>
+            <input id="firstName" type="text" placeholder="First Name" required />
+        </div>
+        <div>
+            <input id="lastName" type="text" placeholder "Last Name" required />
+        </div>
+        <div>
+            <input id="dob" type="date" placeholder="Date of Birth" required />
+        </div>
+        <div>
+            <select id="country" required>
+                <option value="">Select Country</option>
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <!-- Add more countries here -->
+            </select>
+        </div>
+        <div>
+            Gender:
+            <input id="genderMale" type="radio" name="gender"/>Male
+            <input id="genderFemale" type="radio" name="gender"/>Female
+        </div>
+    </form>
+</div>
+
+<div>
+    <h2>Contact Information</h2>
+    <form id="contactForm">
+        <div>
+            <input id="profession" type="text" placeholder="Profession" required />
+        </div>
+        <div>
+            <input id="email" type="email" placeholder="Email" required />
+        </div>
+        <div>
+            <input id="mobileNumber" type="tel" placeholder="Mobile Number" required />
+        </div>
+        <button id="submit" type="button" onclick="submitForm()">Submit</button>
+        <button id="reset" type="reset">Reset</button>
+    </form>
+</div>
+
+<script>
+function submitForm() {
+    // Get form values
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const dob = document.getElementById('dob').value;
+    const country = document.getElementById('country').value;
+    const gender = document.querySelector('input[name="gender"]:checked').value;
+    const profession = document.getElementById('profession').value;
+    const email = document.getElementById('email').value;
+    const mobileNumber = document.getElementById('mobileNumber').value;
+
+    // Create a customer details string
+    const customerDetails = `
+        <h2>Customer Details</h2>
+        <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+        <p><strong>Date of Birth:</strong> ${dob}</p>
+        <p><strong>Country:</strong> ${country}</p>
+        <p><strong>Gender:</strong> ${gender}</p>
+        <h2>Contact Information</h2>
+        <p><strong>Profession:</strong> ${profession}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Mobile Number:</strong> ${mobileNumber}</p>
+    `;
+
+    // Create a popup with the customer details
+    const popup = window.open('', 'Customer Details', 'width=400,height=400');
+    popup.document.body.innerHTML = customerDetails;
+}
+</script>
+
+</body>
+</html>
